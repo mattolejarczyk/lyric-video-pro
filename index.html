@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lyric Video Pro - Transform Your Songs Into Stunning Lyric Videos</title>
+    <meta name="description" content="Generate beautiful motion video backgrounds with perfectly synced lyrics. 100% automated, custom videos for musicians, bands, and songwriters.">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .logo img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #ffd700;
+            transform: translateY(-2px);
+        }
+        
+        .cta-btn {
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            color: #333;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+            padding: 120px 0 80px;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="25" cy="25" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="1.5" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+            animation: float 20s infinite linear;
+        }
+        
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(-100px, -100px) rotate(360deg); }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            color: #333;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            padding: 15px 40px;
+            border: 2px solid rgba(255,255,255,0.5);
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.4);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-3px);
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+            font-weight: 700;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,215,0,0.1), transparent);
+            transition: all 0.6s ease;
+        }
+        
+        .feature-card:hover::before {
+            left: 100%;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, #1e3a8a, #1e40af);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 2rem;
+            color: white;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* How It Works */
+        .how-it-works {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .step {
+            text-align: center;
+            position: relative;
+        }
+        
+        .step-image {
+            width: 200px;
+            height: 150px;
+            background: #f0f0f0;
+            border: 2px dashed #ccc;
+            border-radius: 10px;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .step h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        
+        .step p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        /* YouTube Value Section */
+        .youtube-value {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+            color: white;
+        }
+        
+        .youtube-value .section-title {
+            color: white;
+        }
+        
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .value-card {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .value-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.15);
+        }
+        
+        .value-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #ffd700;
+        }
+        
+        .value-card p {
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            color: white;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .testimonial {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.15);
+        }
+        
+        .testimonial p {
+            font-style: italic;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        .testimonial-author {
+            font-weight: bold;
+            opacity: 0.9;
+        }
+        
+        /* Pricing */
+        .pricing {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+        
+        .pricing-grid {
+            display: flex;
+            justify-content: center;
+            margin-top: 3rem;
+        }
+        
+        .pricing-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            max-width: 400px;
+            width: 100%;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .original-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .discount-badge {
+            background: #ffd700;
+            color: #333;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        
+        /* Video Examples Section */
+        .video-examples {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+        
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .video-placeholder {
+            background: #000;
+            border-radius: 15px;
+            aspect-ratio: 16/9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.1rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .video-placeholder::before {
+            content: '▶';
+            font-size: 3rem;
+            opacity: 0.7;
+        }
+        
+        .video-info {
+            text-align: center;
+            margin-top: 1rem;
+        }
+        
+        .video-info h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+        
+        .video-info p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .price {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #333;
+            margin: 1rem 0;
+        }
+        
+        .pricing-features {
+            list-style: none;
+            margin: 2rem 0;
+            text-align: left;
+        }
+        
+        .pricing-features li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .pricing-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+        }
+        
+        .guarantee {
+            background: linear-gradient(45deg, #28a745, #20c997);
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .premium-contact {
+            background: #e9ecef;
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            text-align: center;
+            font-style: italic;
+        }
+        
+        /* CTA Section */
+        .final-cta {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .final-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .final-cta p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding: 0 15px;
+            }
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">
+                <img src="src/assets/steel-train-records-logo.png" alt="Steel Train Records Logo">
+                Lyric Video Pro
+            </a>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#testimonials">Reviews</a></li>
+            </ul>
+            <a href="#get-started" class="cta-btn">Buy Now</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Transform Your Songs Into Stunning Music Videos</h1>
+                <p>Generate beautiful motion video backgrounds with perfectly synced lyrics and error-free captions. 100% automated - no editing required!</p>
+                <div class="hero-cta">
+                    <a href="#get-started" class="btn-primary">Create Your Video Now</a>
+                    <a href="#how-it-works" class="btn-secondary">See How It Works</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose Lyric Video Pro?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>100% Automated</h3>
+                    <p>No editing required! Our software generates beautiful motion video backgrounds with perfectly synced lyrics automatically.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>100% Custom Videos</h3>
+                    <p>Every video background is completely custom-generated - no stock footage ever used. Your video will be unique and original.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Perfect Sync</h3>
+                    <p>100% accurate and automated synced lyrics with smooth fade in/out transitions. No timing errors or manual adjustments needed.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>YouTube Ready</h3>
+                    <p>Videos are optimized and ready for YouTube upload, helping you reach millions of potential fans on the world's largest video platform.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎵</div>
+                    <h3>100% Done For You</h3>
+                    <p>Simply upload your MP3 and lyrics, choose your font, describe your desired background - we handle everything else and deliver via email.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✨</div>
+                    <h3>Professional Features</h3>
+                    <p>Includes video fade in/out, lyric fade in/out, custom font selection, and credits with artist/song title at beginning and end.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">Create Your Video in 4 Simple Steps</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-image">
+                        [Upload MP3 Image Placeholder]
+                    </div>
+                    <div class="step-number">1</div>
+                    <h3>Upload Your MP3</h3>
+                    <p>Upload your song file and paste in your lyrics through our simple website form.</p>
+                </div>
+                <div class="step">
+                    <div class="step-image">
+                        [Font Selection Image Placeholder]
+                    </div>
+                    <div class="step-number">2</div>
+                    <h3>Choose Your Font</h3>
+                    <p>Select from our collection of professional fonts that best match your music style.</p>
+                </div>
+                <div class="step">
+                    <div class="step-image">
+                        [Background Description Image Placeholder]
+                    </div>
+                    <div class="step-number">3</div>
+                    <h3>Describe Your Vision</h3>
+                    <p>Add a description of your desired video background - our AI will create a custom motion background just for you.</p>
+                </div>
+                <div class="step">
+                    <div class="step-image">
+                        [Email Delivery Image Placeholder]
+                    </div>
+                    <div class="step-number">4</div>
+                    <h3>Receive Your Video</h3>
+                    <p>Get your finished, professional lyric video delivered directly to your email - ready to upload to YouTube!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- YouTube Value Section -->
+    <section class="youtube-value">
+        <div class="container">
+            <h2 class="section-title">The Power of YouTube for Musicians</h2>
+            <div class="value-grid">
+                <div class="value-card">
+                    <h3>Massive Reach</h3>
+                    <p>YouTube has over 2 billion logged-in monthly users, providing vast exposure to potential fans worldwide.</p>
+                </div>
+                <div class="value-card">
+                    <h3>Higher Engagement</h3>
+                    <p>Music videos and lyric videos have significantly higher engagement rates than static content, with more comments, likes, and shares.</p>
+                </div>
+                <div class="value-card">
+                    <h3>Monetization Revenue</h3>
+                    <p>Earn money through ad revenue once you meet eligibility requirements - turn your music into a revenue stream.</p>
+                </div>
+                <div class="value-card">
+                    <h3>Enhanced Discoverability</h3>
+                    <p>YouTube's algorithms promote engaging content. Well-optimized lyric videos appear in search results and recommended feeds.</p>
+                </div>
+                <div class="value-card">
+                    <h3>SEO Benefits</h3>
+                    <p>Videos improve search engine optimization for your brand with keywords in titles, descriptions, and tags reaching more viewers.</p>
+                </div>
+                <div class="value-card">
+                    <h3>Community Building</h3>
+                    <p>Engage with fans through comments, build loyalty, and create a community around your music that drives long-term success.</p>
+                </div>
+            </div>
+            <div style="margin-top: 3rem; text-align: center;">
+                <h3 style="color: #ffd700; margin-bottom: 1rem;">What Musicians Miss Without YouTube</h3>
+                <p style="opacity: 0.9; max-width: 800px; margin: 0 auto;">
+                    Without YouTube presence, artists miss out on massive audience reach, revenue opportunities, visual storytelling, 
+                    fan interaction, search visibility, industry collaborations, and effective promotion strategies. In today's digital 
+                    landscape, YouTube presence is crucial for credibility and success in the music industry.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Examples -->
+    <section class="video-examples">
+        <div class="container">
+            <h2 class="section-title">See Lyric Video Pro in Action</h2>
+            <p style="text-align: center; color: #666; font-size: 1.1rem; margin-bottom: 2rem;">
+                Watch examples of stunning lyric videos created with our platform
+            </p>
+            <div class="video-grid">
+                <div class="video-example">
+                    <div class="video-placeholder">
+                        [Video Example 1 Placeholder]
+                    </div>
+                    <div class="video-info">
+                        <h4>Rock Ballad Example</h4>
+                        <p>Custom motion background with perfectly synced lyrics</p>
+                    </div>
+                </div>
+                <div class="video-example">
+                    <div class="video-placeholder">
+                        [Video Example 2 Placeholder]
+                    </div>
+                    <div class="video-info">
+                        <h4>Pop Song Example</h4>
+                        <p>Vibrant visuals with smooth lyric transitions</p>
+                    </div>
+                </div>
+                <div class="video-example">
+                    <div class="video-placeholder">
+                        [Video Example 3 Placeholder]
+                    </div>
+                    <div class="video-info">
+                        <h4>Hip-Hop Track Example</h4>
+                        <p>Dynamic background with custom font styling</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Artists Are Saying</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial">
+                    <p>"Lyric Video Pro saved me thousands on video production. My YouTube views increased 300% after using these custom lyric videos!"</p>
+                    <div class="testimonial-author">- Sarah Mitchell, Singer-Songwriter</div>
+                </div>
+                <div class="testimonial">
+                    <p>"As a band manager, this tool is incredible. We can create professional videos for all our releases without breaking the budget."</p>
+                    <div class="testimonial-author">- Marcus Rodriguez, Band Manager</div>
+                </div>
+                <div class="testimonial">
+                    <p>"The sync is perfect every time and the custom backgrounds are gorgeous. My fans love the videos I create with this platform."</p>
+                    <div class="testimonial-author">- DJ TechnoMax, Electronic Artist</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2 class="section-title">Get Your Professional Lyric Video</h2>
+            <div class="guarantee">
+                🛡️ 100% Satisfaction Guarantee
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="discount-badge">Limited Time Offer!</div>
+                    <h3>Standard HD Video</h3>
+                    <div class="original-price">Originally $47</div>
+                    <div class="price">$10<span style="font-size: 1rem;"> per video</span></div>
+                    <ul class="pricing-features">
+                        <li>720p HD Quality</li>
+                        <li>100% Custom Video Background</li>
+                        <li>Perfect Lyric Sync</li>
+                        <li>Custom Font Selection</li>
+                        <li>Smooth Transitions</li>
+                        <li>Artist Credits</li>
+                        <li>Email Delivery</li>
+                        <li>YouTube Ready Format</li>
+                    </ul>
+                    <a href="#get-started" class="btn-primary">Buy Now - $10</a>
+                    <div style="margin-top: 1rem; padding: 1rem; background: #f8f9fa; border-radius: 10px; font-size: 0.9rem; color: #666;">
+                        <strong>Need Premium HD videos?</strong><br>
+                        1080p ($19) or 4K ($29) available<br>
+                        Contact: <strong>steeltrainrecords@gmail.com</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section id="get-started" class="final-cta">
+        <div class="container">
+            <h2>Ready to Create Amazing Lyric Videos?</h2>
+            <p>Join thousands of musicians who trust Lyric Video Pro to bring their music to life on YouTube</p>
+            <a href="#" class="btn-primary">Start Creating Now</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Lyric Video Pro by Steel Train Records. All rights reserved. | Transform your music into visual art.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header background on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(30, 58, 138, 0.95)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%)';
+            }
+        });
+
+        // Add hover effects for feature cards
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
